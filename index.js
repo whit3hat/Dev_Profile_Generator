@@ -9,12 +9,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 const config = { headers: { accept: 'application/json' } };
 
-axios
-    .get('https://api.github.com' , config);
-    .then(function(response){
-        const { github } =response.data;
-        console.log(github);
-    })
+//prompt user to get info from user
 function promptUser(){
     return inquirer.prompt([
         {
@@ -30,6 +25,14 @@ function promptUser(){
     ]);
 }
 
+axios
+    .get('https://api.github.com' , config);
+    .then(function(response){
+        const { github } =response.data;
+        console.log(github);
+    })
+
+
 const questions = [
     
   
@@ -39,6 +42,18 @@ function writeToFile(fileName, data) {
  
 }
 
+//function to run and get user info and then create file
 function init() {
+    console.log('hi')
+    try {
+        const answers = await promptUser();
 
+        const pdfl;
+
+        await writeFile(fileName , data);
+        console.log('Successfully wrote PDF');
+    } catch(err){
+        console.log(err);
+    }
+}
 init();
