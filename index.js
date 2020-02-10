@@ -10,7 +10,11 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const config = { headers: { accept: 'application/json' } };
 
 axios
-    .get()
+    .get('https://api.github.com' , config);
+    .then(function(response){
+        const { github } =response.data;
+        console.log(github);
+    })
 
 const questions = [
     {

@@ -1,0 +1,26 @@
+{
+  "name": "Dev_Profile_Generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whit3hat/Dev_Profile_Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whit3hat/Dev_Profile_Generator/issues"
+  },
+  "homepage": "https://github.com/whit3hat/Dev_Profile_Generator#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fs": "0.0.1-security",
+    "inquirer": "^7.0.4",
+    "util": "^0.12.1"
+  }
+}
