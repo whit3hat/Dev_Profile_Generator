@@ -15,20 +15,25 @@ axios
         const { github } =response.data;
         console.log(github);
     })
+function promptUser(){
+    return inquirer.prompt([
+        {
+            type:'input',
+            name: 'github',
+            message: 'What is your GitHub Username?'
+        },
+        {
+            type: 'input',
+            name: 'color',
+            message: 'What is your favorite color'
+        },
+    ]);
+}
 
 const questions = [
-    {
-        type: 'input',
-        name: 'github',
-        message: 'What is your GitHub Username?'
-    },
-    {
-        type: 'input',
-        name: 'color',
-        message: 'What is your favoriate color?'
-    }
+    
   
-];
+]
 
 function writeToFile(fileName, data) {
  
