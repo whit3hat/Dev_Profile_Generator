@@ -27,10 +27,14 @@ function promptUser(){
 
 axios
     .get('https://api.github.com' , config);
-    .then(function(response){
+    .then(function(response) {
         const { github } =response.data;
         console.log(github);
+
     })
+    .catch(function(err){
+        console.log(err);
+    });
 
 
 const questions = [
