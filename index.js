@@ -16,33 +16,36 @@ function promptUser(answers){
 //Questions to ask user and pass to answers       
 var questions = [
     {
-        message: 'What is your Github Username?',
-        type: 'input',
-        name: 'github'
-    },
-    {
         message: 'What is your favorite color?',
         type: 'checkbox',
         name: 'color',
         choices: ['Red', 'Blue', 'Green', 'Pink']
     }
+    {
+        message: 'What is your Github Username?',
+        type: 'input',
+        name: 'github',
+        validate: function validateGithub(name){
+            return name !== '';
+        }
+    },
+    
 ]
 
-    
 //pass questions into prompt
 inquirer.prompt(questions, promptUser);
 
 // //API Call to GitHub
-// axios
-//     .get('https://api.github.com')
-//     .then(function(response) {
-//         const { github } = response.data;
-//         console.log(github);
+axios
+    .get('https://api.github.com')
+    .then(function(response) {
+        const { github } = response.data;
+        console.log(github);
 
-//     })
-//     .catch( function(err) { 
-//         console.log(err);
-//     });
+    })
+    .catch( function(err) { 
+        console.log(err);
+    });
 
 
 // Info we want from github
