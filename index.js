@@ -43,27 +43,40 @@ axios
     });
 
 
-const questions = [
+// const questions = [
     
   
-]
+// ]
 
 function writeToFile(fileName, data) {
- 
+
 }
 
 //function to run and get user info and then create file
-function init() {
-    console.log('hi')
-    try {
-        const answers = await promptUser();
-        const html = generateHTML(answers);
-        const pdfl;
+// function init() {
+//     console.log('hi')
+//     try {
+//         const answers = await promptUser();
+//         const html = generateHTML(answers);
+//         const pdf;
 
-        await writeFile(fileName , data);
+//         await writeFileAsync(fileName , data);
+//         console.log('Successfully wrote PDF');
+//     } catch(err){
+//         console.log(err);
+//     }
+// }
+// init();
+
+promptUser()
+    .then(function(answers){
+        const html = generateHTML(answers);
+
+        return writeFileAsync(fileName, data);
+    })
+    .then(function(){
         console.log('Successfully wrote PDF');
-    } catch(err){
+    })
+    .catch(function(err){
         console.log(err);
-    }
-}
-init();
+    });
