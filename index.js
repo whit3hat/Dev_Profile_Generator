@@ -7,47 +7,59 @@ const axios = require('axios');
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-const config = { headers: { accept: 'application/json' } };
+// const config = { headers: { accept: 'application/json' } };
+
+//questions array to pass to inquirer
+const questions = [
+    {
+        type:'input',
+        name: 'github',
+        message: 'What is your GitHub Username?'
+    },
+    {
+        type: 'input',
+        name: 'color',
+        message: 'What is your favorite color',
+        choices: [
+            'Red',
+            'Green',
+            'Blue',
+            'Pink'
+    }];
+
 
 //prompt user to get info from user
 function promptUser(){
     return inquirer.prompt([
-        {
-            type:'input',
-            name: 'github',
-            message: 'What is your GitHub Username?'
-        },
-        {
-            type: 'input',
-            name: 'color',
-            message: 'What is your favorite color',
-            choices: [
-                'Red',
-                'Green',
-                'Blue',
-                'Pink'
-            ]
-        },
-    ]);
+       
+    
 }
 
+//API Call to GitHub
 axios
-    .get('https://api.github.com' , config)
+    .get('https://api.github.com')
     .then(function(response) {
         const { github } = response.data;
         console.log(github);
 
     })
-    .catch(function(err){
+    .catch( function(err) { 
         console.log(err);
     });
 
 
-// const questions = [
-    
-  
-// ]
-
+// Info we want from github
+//     Profile image
+//     * User name
+//     * Links to the following:
+//       * User location via Google Maps
+//       * User GitHub profile
+//       * User blog
+//     * User bio
+//     * Number of public repositories
+//     * Number of followers
+//     * Number of GitHub stars
+//     * Number of users following
 function writeToFile(fileName, data) {
 
 }
@@ -69,8 +81,8 @@ function writeToFile(fileName, data) {
 // init();
 
 promptUser()
-    .then(function(answers){
-        const html = generateHTML(answers);
+    .then(function(data){
+        const html = generateHTML(data);
 
         return writeFileAsync(fileName, data);
     })
