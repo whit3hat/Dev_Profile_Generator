@@ -20,15 +20,21 @@ function promptUser(){
         {
             type: 'input',
             name: 'color',
-            message: 'What is your favorite color'
+            message: 'What is your favorite color',
+            choices: [
+                'Red',
+                'Green',
+                'Blue',
+                'Pink'
+            ]
         },
     ]);
 }
 
 axios
-    .get('https://api.github.com' , config);
+    .get('https://api.github.com' , config)
     .then(function(response) {
-        const { github } =response.data;
+        const { github } = response.data;
         console.log(github);
 
     })
@@ -51,7 +57,7 @@ function init() {
     console.log('hi')
     try {
         const answers = await promptUser();
-
+        const html = generateHTML(answers);
         const pdfl;
 
         await writeFile(fileName , data);
