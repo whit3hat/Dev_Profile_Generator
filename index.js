@@ -9,32 +9,28 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 // const config = { headers: { accept: 'application/json' } };
 
-//questions array to pass to inquirer
-const questions = [
+//prompt user to get info from user
+function promptUser(answers){
+    console.log(answers);
+}
+//Questions to ask user and pass to answers       
+var questions = [
     {
-        type:'input',
-        name: 'github',
-        message: 'What is your GitHub Username?'
+        message: 'What is your Github Username?',
+        type: 'input',
+        name: 'github'
     },
     {
-        type: 'input',
+        message: 'What is your favorite color?',
+        type: 'checkbox',
         name: 'color',
-        message: 'What is your favorite color',
-        choices: [
-            'Red',
-            'Green',
-            'Blue',
-            'Pink'
-    }];
-
-
-//prompt user to get info from user
-function promptUser(){
-    return inquirer.prompt([
-       
+        choices: ['Red', 'Blue', 'Green', 'Pink']
+    }]
     
-}
+   
 
+//pass questions into prompt
+inquirer.prompt(questions, promptUser);
 //API Call to GitHub
 axios
     .get('https://api.github.com')
@@ -80,15 +76,15 @@ function writeToFile(fileName, data) {
 // }
 // init();
 
-promptUser()
-    .then(function(data){
-        const html = generateHTML(data);
+// promptUser()
+//     .then(function(data){
+//         const html = generateHTML(data);
 
-        return writeFileAsync(fileName, data);
-    })
-    .then(function(){
-        console.log('Successfully wrote PDF');
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+//         return writeFileAsync(fileName, data);
+//     })
+//     .then(function(){
+//         console.log('Successfully wrote PDF');
+//     })
+//     .catch(function(err){
+//         console.log(err);
+//     });
