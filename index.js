@@ -25,23 +25,24 @@ var questions = [
         type: 'checkbox',
         name: 'color',
         choices: ['Red', 'Blue', 'Green', 'Pink']
-    }]
-    
-   
+    }
+]
 
+    
 //pass questions into prompt
 inquirer.prompt(questions, promptUser);
-//API Call to GitHub
-axios
-    .get('https://api.github.com')
-    .then(function(response) {
-        const { github } = response.data;
-        console.log(github);
 
-    })
-    .catch( function(err) { 
-        console.log(err);
-    });
+// //API Call to GitHub
+// axios
+//     .get('https://api.github.com')
+//     .then(function(response) {
+//         const { github } = response.data;
+//         console.log(github);
+
+//     })
+//     .catch( function(err) { 
+//         console.log(err);
+//     });
 
 
 // Info we want from github
@@ -56,9 +57,9 @@ axios
 //     * Number of followers
 //     * Number of GitHub stars
 //     * Number of users following
-function writeToFile(fileName, data) {
+// function writeToFile(fileName, data) {
 
-}
+// }
 
 //function to run and get user info and then create file
 // function init() {
