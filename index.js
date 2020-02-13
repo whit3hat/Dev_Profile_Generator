@@ -1,26 +1,26 @@
 //required tools for application
 const inquirer = require('inquirer');
-const fs = require('fs');
-const util = require('util');
-const axios = require('axios');
+// const fs = require('fs');
+// const util = require('util');
+// const axios = require('axios');
 
 
-const writeFileAsync = util.promisify(fs.writeFile);
+//const writeFileAsync = util.promisify(fs.writeFile);
 
 // const config = { headers: { accept: 'application/json' } };
 
-//prompt user to get info from user
-function promptUser(answers){
-    console.log(answers);
-}
+
+
 //Questions to ask user and pass to answers       
 var questions = [
     {
-        message: 'What is your favorite color?',
-        type: 'checkbox',
+        message: 'What is your favorite color? (Red, Blue, Green, or Pink)',
+        type: 'input',
         name: 'color',
-        choices: ['Red', 'Blue', 'Green', 'Pink']
-    }
+        validate: function validateColor(name){
+            return name !== '';
+        }
+    },
     {
         message: 'What is your Github Username?',
         type: 'input',
@@ -32,20 +32,23 @@ var questions = [
     
 ]
 
+
 //pass questions into prompt
-inquirer.prompt(questions, promptUser);
+inquirer.prompt(questions).then(answers => {
+    console.log(JSON.stringify(answers, null, ''))
+});
 
 // //API Call to GitHub
-axios
-    .get('https://api.github.com')
-    .then(function(response) {
-        const { github } = response.data;
-        console.log(github);
+// axios
+//     .get('https://api.github.com')
+//     .then(function(response) {
+//         const { github } = response.data;
+//         console.log(github);
 
-    })
-    .catch( function(err) { 
-        console.log(err);
-    });
+//     })
+//     .catch( function(err) { 
+//         console.log(err);
+//     });
 
 
 // Info we want from github
