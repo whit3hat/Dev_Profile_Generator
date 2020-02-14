@@ -1,97 +1,41 @@
-//required tools for application
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const util = require('util');
-// const axios = require('axios');
+const axios = require('axios');
 
+let output = [];
 
-//const writeFileAsync = util.promisify(fs.writeFile);
+const questions = [
+  {
+      name: 'color',
+      type: 'input',
+      message: 'What is your favorite color? (Red, Blue, Green or Pink)'
+  },
+  {
+      name: 'github',
+      type: 'input',
+      message: ' What is your Github username?'
+  },
+];
 
-// const config = { headers: { accept: 'application/json' } };
+function ask(){
+    inquirer.prompt(questions).then(answers => {
+        output.push(answers);
+        console.log(output);
+        gitRequest();
+    })
+};
 
+ async function gitRequest() {
+            let res = await axios.get('https://api.github.com');
+            const data = res.data;
+            console.log(data);
+    };
 
+ask();
 
-//Questions to ask user and pass to answers       
-var questions = [
-    {
-        message: 'What is your favorite color? (Red, Blue, Green, or Pink)',
-        type: 'input',
-        name: 'color',
-        validate: function validateColor(name){
-            return name !== '';
-        }
-    },
-    {
-        message: 'What is your Github Username?',
-        type: 'input',
-        name: 'github',
-        validate: function validateGithub(name){
-            return name !== '';
-        }
-    },
-    
-]
-
-
-//pass questions into prompt
-inquirer.prompt(questions).then(answers => {
-    console.log(JSON.stringify(answers, null, ''))
-});
-
-// //API Call to GitHub
-// axios
-//     .get('https://api.github.com')
-//     .then(function(response) {
-//         const { github } = response.data;
-//         console.log(github);
-
-//     })
-//     .catch( function(err) { 
-//         console.log(err);
-//     });
-
-
-// Info we want from github
-//     Profile image
-//     * User name
-//     * Links to the following:
-//       * User location via Google Maps
-//       * User GitHub profile
-//       * User blog
-//     * User bio
-//     * Number of public repositories
-//     * Number of followers
-//     * Number of GitHub stars
-//     * Number of users following
 // function writeToFile(fileName, data) {
-
+ 
 // }
 
-//function to run and get user info and then create file
 // function init() {
-//     console.log('hi')
-//     try {
-//         const answers = await promptUser();
-//         const html = generateHTML(answers);
-//         const pdf;
 
-//         await writeFileAsync(fileName , data);
-//         console.log('Successfully wrote PDF');
-//     } catch(err){
-//         console.log(err);
-//     }
-// }
 // init();
-
-// promptUser()
-//     .then(function(data){
-//         const html = generateHTML(data);
-
-//         return writeFileAsync(fileName, data);
-//     })
-//     .then(function(){
-//         console.log('Successfully wrote PDF');
-//     })
-//     .catch(function(err){
-//         console.log(err);
-//     });
