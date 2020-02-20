@@ -1,10 +1,12 @@
 //Requried modules to run the application
 const inquirer = require('inquirer');
 const axios = require('axios');
+const fs = require('fs');
+
+//const writeToFile = util.promisify(fs.writeFile);
 
 
 
-gitRequest();
 //Function to ask users questions for the PDF
 async function gitRequest() {
     try { //asking Github username
@@ -18,14 +20,24 @@ async function gitRequest() {
             name: 'color'
         });
                 //call to the github api with the username
-        const { data } = await axios.get(
+        axios.get(
             `https://api.github.com/users/${github}`
-        );
+        )
+        .then(
+            function(response){
+                gitUrl = response.data.url;
+                name = response.data.name;
+                location = response.data.location;
+                stars = response.starred_url.length;
+                blog = response.data.blog;
+                repos = response.data.public_repos;
+                followers = response.data.followers;
+                following = response.data.following;
+                image = response.data.avatar_url;
+                console.log(response);
+            }
 
-            console.log(data);
-            
-                   
-
+        ); 
         } catch (err) {
             console.log(err);
         }
@@ -33,9 +45,26 @@ async function gitRequest() {
 
 }
 // function writeToFile(fileName, data) {
- 
+
+    //fs.writefile
+
+    //pdf convert from html
+    
 // }
 
 // function init() {
+//     console.log('hi')
+//     try {
+//         const answers = await gitRequest();
 
+//         const html = generateHTML(answers);
+
+//         await writeToFile('index.html', html);
+
+//         console.log('wrote the index.hml');
+//     } catch (err){
+//         console.log(err);
+//     }
+// }
 // init();
+gitRequest();
