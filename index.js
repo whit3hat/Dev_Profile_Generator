@@ -23,34 +23,44 @@ async function gitRequest() {
         axios.get(
             `https://api.github.com/users/${github}`
         )
-        .then(
+        .then( //Variables created from gitHub call
             function(response){
-                gitUrl = response.data.url;
-                name = response.data.name;
-                location = response.data.location;
-                stars = response.starred_url.length;
-                blog = response.data.blog;
-                repos = response.data.public_repos;
-                followers = response.data.followers;
-                following = response.data.following;
-                image = response.data.avatar_url;
-                console.log(response);
+               gitResponse.gitUrl = response.data.url;
+               gitResponse.name = response.data.name;
+               gitResponse.location = response.data.location;
+               gitResponse.stars = response.starred_url.length;
+               gitResponse.blog = response.data.blog;
+               gitReponse.repos = response.data.public_repos;
+               gitResponse.followers = response.data.followers;
+               gitResponse.following = response.data.following;
+               gitResponse.image = response.data.avatar_url;
             }
-
         ); 
         } catch (err) {
             console.log(err);
         }
-
-
 }
-// function writeToFile(fileName, data) {
 
-    //fs.writefile
+//Variable object to hold the responses to call in the writeToFile function
+const gitResponse = {};
 
-    //pdf convert from html
+//Function to write the html from the github variables
+function writeToFile(fileName, data) {
+    const fileName = 'index.html';
+    const data = <html><head><title>GitHub Profile</title></head><body><img src= 'image'></img><h1></h1></body></html>
     
-// }
+    
+
+    fs.writefile( fileName , data ,function (err) { 
+        if (err) throw err;
+        console.log('wrote html file');
+    }
+
+    )
+
+    // pdf convert from html
+    
+}
 
 // function init() {
 //     console.log('hi')
