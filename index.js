@@ -42,7 +42,8 @@ async function gitRequest() {
 }
 
 //Variable object to hold the responses to call in the writeToFile function
-const gitResponse = {};
+const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
+ repos: '', followers: '', following: '', image: ''};
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
