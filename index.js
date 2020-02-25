@@ -48,18 +48,14 @@ const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
     
-    //HTML info to pass to fs.write function
-    
-    
     
 //writes the html file then passes to the init() funciton
-    fs.writefile( fileName , html ,function (err) { 
-        if (err) throw err;
-        console.log('wrote html file');
+    fs.writefile( fileName , html , (err) => { 
+        if (err) { 
+        return console.log(err);
     }
-
-    )
-
+    });
+    
     // pdf convert from html
     
 }
