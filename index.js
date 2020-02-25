@@ -55,7 +55,7 @@ function writeToFile(fileName, html) {
         return console.log(err);
     }
     });
-    
+
     // pdf convert from html
     
 }
@@ -63,11 +63,11 @@ function writeToFile(fileName, html) {
 function init() {
     console.log('hi')
     try {
-        const answers = await gitRequest();
+        const gitReponse = await gitRequest();
 
-        const html = generateHTML(answers);
+        const html = generateHTML(gitResponse);
 
-        await writeToFile('index.html', html);
+        await writeToFile(fileName, html);
 
         console.log('wrote the index.hml');
     } catch (err){
