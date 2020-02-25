@@ -34,7 +34,53 @@ function generateHTML(data) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>Document</title>
+      <title>GitHub Profile</title>
+      <body>
+          <div class='wrapper'>
+              <div class='photo-header'>
+                  <img src='${ }'>
+                  <h1>Hi</h1>
+                  <h2>My name is ${ } !</h2>
+                  <h6>Currently @ ${ }</h6>
+                  <div class='links-nav'>
+                      <a href='https://maps.google.com/?q=${ }' class='nav-link'><i class='fas fa-location-arrow'>${ }</i></a>
+                      <a href='${ }' class='nav-link'><i class='fab fa-github-alt'></i></a>
+                      <a href='${ }' clas='nav-link'>Portfolio</a>
+                  </div>
+              </div>
+          
+              <main>
+                  <div class='container'>
+                      <div class='row'>
+                          <h3 class='col'>
+                              ${ }
+                          </h3>
+                      </div>
+      
+                      <div class='row'>
+                          <div class='col card'>
+                              <h3>Public Repos</h3>
+                              <h5>${ }</h5>
+                          </div>
+                          <div class='col card'>
+                              <h3>Followers</h3>
+                              <h5>${ }</h5>
+                          </div>
+                      </div>
+                      <div class='row'>
+                          <div class='col card'>
+                              <h3>Github Stars</h3>
+                              <h5>${ }</h5>
+                          </div>
+                          <div class='col card'>
+                              <h3>Following</h3>
+                              <h5>${ }</h5>
+                          </div>
+                      </div>
+                  </div>
+              </main>
+      
+      </body>
       <style>
           @page {
             margin: 0;
