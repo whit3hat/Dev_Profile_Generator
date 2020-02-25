@@ -45,13 +45,14 @@ async function gitRequest() {
 const gitResponse = {};
 
 //Function to write the html from the github variables
-function writeToFile(fileName, data) {
-    const fileName = 'index.html';
-    const data = <html><head><title>GitHub Profile</title></head><body><img src= 'image'></img><h1></h1></body></html>
+function writeToFile(fileName, html) {
+    
+    //HTML info to pass to fs.write function
     
     
-
-    fs.writefile( fileName , data ,function (err) { 
+    
+//writes the html file then passes to the init() funciton
+    fs.writefile( fileName , html ,function (err) { 
         if (err) throw err;
         console.log('wrote html file');
     }
@@ -62,19 +63,19 @@ function writeToFile(fileName, data) {
     
 }
 
-// function init() {
-//     console.log('hi')
-//     try {
-//         const answers = await gitRequest();
+function init() {
+    console.log('hi')
+    try {
+        const answers = await gitRequest();
 
-//         const html = generateHTML(answers);
+        const html = generateHTML(answers);
 
-//         await writeToFile('index.html', html);
+        await writeToFile('index.html', html);
 
-//         console.log('wrote the index.hml');
-//     } catch (err){
-//         console.log(err);
-//     }
-// }
-// init();
+        console.log('wrote the index.hml');
+    } catch (err){
+        console.log(err);
+    }
+}
+init();
 gitRequest();
