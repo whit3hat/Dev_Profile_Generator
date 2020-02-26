@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const fs = require('fs');
-const pdf = require('html-pdf');
+// const pdf = require('html-pdf');
 
 //const writeToFile = util.promisify(fs.writeFile);
 
@@ -73,18 +73,19 @@ function writeToFile(fileName, html) {
     
 };
 
-function init() {
-    console.log('hi')
-    // try {
-        const github = gitRequest();
+// function init() {
+//     console.log('hi')
+//     // try {
+//         const github = gitRequest();
 
-        const html = generateHTML(gitResponse);
+//         const html = generateHTML(gitResponse);
 
-        writeToFile(fileName, html);
+//         writeToFile(fileName, html);
 
-        console.log('wrote the index.hml');
-    // } catch (err){
-    //     console.log(err);
-    // }
-};
-init();
+//         console.log('wrote the index.hml');
+//     // } catch (err){
+//     //     console.log(err);
+//     // }
+// };}
+// init(); 
+ } gitRequest();
