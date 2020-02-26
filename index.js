@@ -27,6 +27,8 @@ async function gitRequest() {
             function(response){
                gitResponse.gitUrl = response.data.url;
                gitResponse.name = response.data.name;
+               gitResponse.bio = response.data.bio;
+               gitResponse.company = response.data.company;
                gitResponse.location = response.data.location;
                gitResponse.stars = response.starred_url.length;
                gitResponse.blog = response.data.blog;
@@ -43,7 +45,7 @@ async function gitRequest() {
 
 //Variable object to hold the responses to call in the writeToFile function
 const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
- repos: '', followers: '', following: '', image: ''};
+ repos: '', followers: '', following: '', image: '', bio: '', company: ''};
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
@@ -63,11 +65,11 @@ function writeToFile(fileName, html) {
 function init() {
     console.log('hi')
     try {
-        const gitReponse = await gitRequest();
+        const github = gitRequest();
 
         const html = generateHTML(gitResponse);
 
-        await writeToFile(fileName, html);
+        writeToFile(fileName, html);
 
         console.log('wrote the index.hml');
     } catch (err){
@@ -75,4 +77,4 @@ function init() {
     }
 }
 init();
-gitRequest();
+//gitRequest();
