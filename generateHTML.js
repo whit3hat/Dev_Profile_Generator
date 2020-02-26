@@ -38,20 +38,14 @@ function generateHTML(data) {
       <body>
           <div class='wrapper'>
               <div class='photo-header'>
-                  <img src='${ }'>
+                  <img src='${avatar_url}'>
                   <h1>Hi</h1>
-                  <h2>My name is ${ } !</h2>
-                  <h6>Currently @ ${ }</h6>
+                  <h2>My name is ${data.name} !</h2>
+                  <h6>Currently @ ${data.company}</h6>
                   <div class='links-nav'>
-<<<<<<< HEAD
-                      <a href='https://maps.google.com/?q=${data.location}' class='nav-link'><i class='fas fa-location-arrow'>${data.location}</i></a>
+                      <a href='https://maps.google.com/?q=${data.location}' class='nav-link'><i class='fas fa-location-arrow'>${ }</i></a>
                       <a href='${data.html_url}' class='nav-link'><i class='fab fa-github-alt'></i></a>
                       <a href='${data.blog}' clas='nav-link'>Portfolio</a>
-=======
-                      <a href='https://maps.google.com/?q=${ }' class='nav-link'><i class='fas fa-location-arrow'>${ }</i></a>
-                      <a href='${ }' class='nav-link'><i class='fab fa-github-alt'></i></a>
-                      <a href='${ }' clas='nav-link'>Portfolio</a>
->>>>>>> parent of 998264a... added variables to html generate
                   </div>
               </div>
           
@@ -59,28 +53,28 @@ function generateHTML(data) {
                   <div class='container'>
                       <div class='row'>
                           <h3 class='col'>
-                              ${ }
+                              ${data.bio}
                           </h3>
                       </div>
       
                       <div class='row'>
                           <div class='col card'>
                               <h3>Public Repos</h3>
-                              <h5>${ }</h5>
+                              <h5>${data.public_repos}</h5>
                           </div>
                           <div class='col card'>
                               <h3>Followers</h3>
-                              <h5>${ }</h5>
+                              <h5>${data.followers}</h5>
                           </div>
                       </div>
                       <div class='row'>
                           <div class='col card'>
                               <h3>Github Stars</h3>
-                              <h5>${ }</h5>
+                              <h5>${data.public_gists}</h5>
                           </div>
                           <div class='col card'>
                               <h3>Following</h3>
-                              <h5>${ }</h5>
+                              <h5>${data.following}</h5>
                           </div>
                       </div>
                   </div>
@@ -189,7 +183,6 @@ function generateHTML(data) {
          padding-left: 100px;
          padding-right: 100px;
          }
-
          .row {
            display: flex;
            flex-wrap: wrap;
@@ -197,7 +190,6 @@ function generateHTML(data) {
            margin-top: 20px;
            margin-bottom: 20px;
          }
-
          .card {
            padding: 20px;
            border-radius: 6px;
@@ -210,13 +202,11 @@ function generateHTML(data) {
          flex: 1;
          text-align: center;
          }
-
          a, a:hover {
          text-decoration: none;
          color: inherit;
          font-weight: bold;
          }
-
          @media print { 
           body { 
             zoom: .75; 
