@@ -40,8 +40,6 @@ const fs = require('fs');
             function(response){
                gitResponse.gitUrl = response.data.url;
                gitResponse.name = response.data.name;
-               gitResponse.bio = response.data.bio;
-               gitResponse.company = response.data.company;
                gitResponse.location = response.data.location;
                gitResponse.stars = response.starred_url.length;
                gitResponse.blog = response.data.blog;
@@ -56,7 +54,11 @@ const fs = require('fs');
 
 //Variable object to hold the responses to call in the writeToFile function
 const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
+<<<<<<< HEAD
  repos: '', followers: '', following: '', image: '', bio: '', company: '', color: ''};
+=======
+ repos: '', followers: '', following: '', image: ''};
+>>>>>>> parent of 998264a... added variables to html generate
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
@@ -73,13 +75,21 @@ function writeToFile(fileName, html) {
     
 };
 
+<<<<<<< HEAD
 // function init() {
 //     console.log('hi')
 //     // try {
 //         const github = gitRequest();
+=======
+function init() {
+    console.log('hi')
+    try {
+        const gitReponse = await gitRequest();
+>>>>>>> parent of 998264a... added variables to html generate
 
 //         const html = generateHTML(gitResponse);
 
+<<<<<<< HEAD
 //         writeToFile(fileName, html);
 
 //         console.log('wrote the index.hml');
@@ -89,3 +99,14 @@ function writeToFile(fileName, html) {
 // };}
 // init(); 
  } gitRequest();
+=======
+        await writeToFile(fileName, html);
+
+        console.log('wrote the index.hml');
+    } catch (err){
+        console.log(err);
+    }
+}
+init();
+gitRequest();
+>>>>>>> parent of 998264a... added variables to html generate
