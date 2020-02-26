@@ -48,7 +48,7 @@ const pdf = require('html-pdf');
             }
         ); 
         
-}
+});
 
 //Variable object to hold the responses to call in the writeToFile function
 const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
