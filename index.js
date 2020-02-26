@@ -2,24 +2,33 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const fs = require('fs');
+const pdf = require('html-pdf');
 
 //const writeToFile = util.promisify(fs.writeFile);
 
 
 
 //Function to ask users questions for the PDF
-async function gitRequest() {
+ function gitRequest() {
     try { //asking Github username
-        const { github } = await inquirer.prompt({
+        const { github } = inquirer.prompt({
             message: 'What is your Github username?',
             name: 'github'
         });
               //asking color for the pdf
-        const { color } = await inquirer.prompt({
-            message: 'What is your favorite color? (Red, Blue, Green or Pink)',
-            name: 'color'
-        });
-                //call to the github api with the username
+        const { color } = inquirer.prompt({
+            type: 'checkbox',
+            message: 'Choose a color:',
+            choices: [
+                'blue',
+                'green',
+                'red',
+                'pink',
+            ],
+        },)
+        .then((data) => {
+        const fileName = data.user.toLowerCase().split(' ').join(' ') + '.html';
+            //call to the github api with the username
         axios.get(
             `https://api.github.com/users/${github}`
         )
@@ -38,9 +47,7 @@ async function gitRequest() {
                gitResponse.image = response.data.avatar_url;
             }
         ); 
-        } catch (err) {
-            console.log(err);
-        }
+        
 }
 
 //Variable object to hold the responses to call in the writeToFile function
