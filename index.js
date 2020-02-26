@@ -10,13 +10,13 @@ const pdf = require('html-pdf');
 
 //Function to ask users questions for the PDF
  function gitRequest() {
-    try { //asking Github username
-        const { github } = inquirer.prompt({
-            message: 'What is your Github username?',
-            name: 'github'
-        });
-              //asking color for the pdf
-        const { color } = inquirer.prompt({
+     inquirer.prompt([
+         {
+             type: 'input',
+             name: 'github',
+             message: 'What is your Github username?',
+         },
+         {
             type: 'checkbox',
             message: 'Choose a color:',
             choices: [
@@ -25,10 +25,10 @@ const pdf = require('html-pdf');
                 'red',
                 'pink',
                      ],
-                
-        })
-        .then((data) => {
+         },
+     ]).then((data) => {
         gitResponse.color = data.color;
+        gitResponse.github = data.github;
             //call to the github api with the username
         axios
         .get(`https://api.github.com/users/${github}`)
