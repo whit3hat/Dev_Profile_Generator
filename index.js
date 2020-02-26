@@ -24,10 +24,10 @@ const pdf = require('html-pdf');
                 'green',
                 'red',
                 'pink',
-            ],
-        },)
+            ]
+        })
         .then((data) => {
-        const fileName = data.user.toLowerCase().split(' ').join(' ') + '.html';
+        gitResponse.color = data.color;
             //call to the github api with the username
         axios.get(
             `https://api.github.com/users/${github}`
@@ -52,7 +52,7 @@ const pdf = require('html-pdf');
 
 //Variable object to hold the responses to call in the writeToFile function
 const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
- repos: '', followers: '', following: '', image: '', bio: '', company: ''};
+ repos: '', followers: '', following: '', image: '', bio: '', company: '', color: ''};
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
@@ -67,11 +67,11 @@ function writeToFile(fileName, html) {
 
     // pdf convert from html
     
-}
+};
 
 function init() {
     console.log('hi')
-    try {
+    // try {
         const github = gitRequest();
 
         const html = generateHTML(gitResponse);
@@ -79,9 +79,8 @@ function init() {
         writeToFile(fileName, html);
 
         console.log('wrote the index.hml');
-    } catch (err){
-        console.log(err);
-    }
-}
+    // } catch (err){
+    //     console.log(err);
+    // }
+};
 init();
-//gitRequest();
