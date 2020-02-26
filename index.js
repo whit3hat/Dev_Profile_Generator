@@ -24,14 +24,18 @@ const pdf = require('html-pdf');
                 'green',
                 'red',
                 'pink',
-            ]
+                     ],
+                
         })
         .then((data) => {
         gitResponse.color = data.color;
             //call to the github api with the username
-        axios.get(
-            `https://api.github.com/users/${github}`
-        )
+        axios
+        .get(`https://api.github.com/users/${github}`)
+        .catch(err => {
+            console.log(`User not found`);
+            process.exit(1);
+        })
         .then( //Variables created from gitHub call
             function(response){
                gitResponse.gitUrl = response.data.url;
