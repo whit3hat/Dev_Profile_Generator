@@ -53,8 +53,7 @@ const fs = require('fs');
 });
 
 //Variable object to hold the responses to call in the writeToFile function
-const gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
- repos: '', followers: '', following: '', image: ''};
+const gitResponse = {};
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
