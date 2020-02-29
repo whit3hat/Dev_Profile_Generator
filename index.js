@@ -2,7 +2,9 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const fs = require('fs');
+
 const generateHTML = require('./generateHTML');
+
 
 //const writeToFile = util.promisify(fs.writeFile);
 //Variable object to hold the responses to call in the writeToFile function
@@ -11,6 +13,7 @@ const generateHTML = require('./generateHTML');
 
 
 //Function to ask users questions for the PDF
+
 async function gitRequest() {
     return new Promise(async (resolve, reject) => {
         try { //asking Github username
@@ -67,11 +70,18 @@ function writeToFile(fileName, html) {
 
     // pdf convert from html
     
-}
+};
+
+
+// function init() {
+//     console.log('hi')
+//     // try {
+//         const github = gitRequest();
 
 function init() {
     console.log('hi')
     try {
+
         let answers;
         let html;
         gitRequest()
@@ -79,6 +89,7 @@ function init() {
             answers = result;
             console.log(answers)
             html = generateHTML(answers);
+
 
             writeToFile('index.html', html);
         })
@@ -92,4 +103,6 @@ function init() {
     }
 }
 init();
+
 // gitRequest()
+
