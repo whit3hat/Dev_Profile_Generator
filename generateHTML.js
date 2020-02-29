@@ -24,8 +24,8 @@ const colors = {
     photoBorderColor: "white"
   }
 };
-
-function generateHTML(data) {
+module.export = {
+generateHTML: function (data) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -38,12 +38,14 @@ function generateHTML(data) {
       <body>
           <div class='wrapper'>
               <div class='photo-header'>
-                  <img src='${avatar_url}'>
+
+                  <img src='${data.avatar_url}'>
                   <h1>Hi</h1>
-                  <h2>My name is ${data.name} !</h2>
+                  <h2>My name is ${data.name}!</h2>
                   <h6>Currently @ ${data.company}</h6>
                   <div class='links-nav'>
-                      <a href='https://maps.google.com/?q=${data.location}' class='nav-link'><i class='fas fa-location-arrow'>${ }</i></a>
+                      <a href='https://maps.google.com/?q=${data.location}' class='nav-link'><i class='fas fa-location-arrow'>${data.location}</i></a>
+
                       <a href='${data.html_url}' class='nav-link'><i class='fab fa-github-alt'></i></a>
                       <a href='${data.blog}' clas='nav-link'>Portfolio</a>
                   </div>
@@ -214,3 +216,6 @@ function generateHTML(data) {
          }
       </style>`
         }
+
+      }
+
