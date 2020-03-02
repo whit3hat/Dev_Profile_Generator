@@ -24,7 +24,7 @@ const colors = {
     photoBorderColor: "white"
   }
 };
-module.export = {
+module.exports = {
 generateHTML: function (data) {
   return `<!DOCTYPE html>
 <html lang="en">

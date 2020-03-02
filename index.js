@@ -40,8 +40,8 @@ async function gitRequest() {
                         following: response.data.following,
                         image: response.data.avatar_url
                     })
-                }
-            ); 
+                } 
+            ); console.log('color: ',color);
             } catch (err) {
                 console.log(err);
             }
@@ -78,7 +78,7 @@ function init() {
         .then(async (result) => {
             answers = result;
             console.log(answers)
-            html = generateHTML(answers);
+            html= generateHTML.generateHTML(answers, color);
 
             writeToFile('index.html', html);
         })
