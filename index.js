@@ -52,7 +52,7 @@ async function gitRequest() {
 
                         
                         resolve(gitResponse);
-                   
+                        console.log(gitResponse.color);
             }); 
             } catch (err) {
                 console.log(err);
