@@ -8,14 +8,16 @@ const generateHTML = require('./generateHTML');
 
 //const writeToFile = util.promisify(fs.writeFile);
 
-//Variable object to hold the responses to call in the writeToFile function
-let gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
- repos: '', followers: '', following: '', image: '', color: ''};
+
 
 
 //Function to ask users questions for the PDF
 
-async function gitRequest(gitResponse) {
+async function gitRequest() {
+    //Variable object to hold the responses to call in the writeToFile function
+    let gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
+    repos: '', followers: '', following: '', image: '', color: ''};
+
     return new Promise(async (resolve, reject) => {
         try { //asking Github username
             const { github } = await inquirer.prompt({
@@ -26,23 +28,32 @@ async function gitRequest(gitResponse) {
             const { color } = await inquirer.prompt({
                 message: 'What is your favorite color? (Red, Blue, Green or Pink)',
                 name: 'color'
+
              });
             //         //call to the github api with the username
-           return axios.get(
+           axios.get(
+               
+               
                 `https://api.github.com/users/${github}`
             )
-            .then( //Variables created from gitHub call
-                (gitResponse) => { 
-                        this.gitResponse.gitUrl = response.data.url
-                        this.name = response.data.name,
-                        this.location = response.data.location,
-                        this.stars = response.data.starred_url.length,
-                        this.blog = response.data.blog,
-                        this.repos = response.data.public_repos,
-                        this.followers = response.data.followers,
-                        this.following = response.data.following,
-                        this.image = response.data.avatar_url
-                    });
+            .then((response) => { //Variables created from gitHub call 
+                
+               
+                        gitResponse.gitUrl = response.data.url,
+                        gitResponse.name = response.data.name,
+                        gitResponse.location = response.data.location,
+                        gitResponse.stars = response.data.starred_url.length,
+                        gitResponse.blog = response.data.blog,
+                        gitResponse.repos = response.data.public_repos,
+                        gitResponse.followers = response.data.followers,
+                        gitResponse.following = response.data.following,
+                        gitResponse.image = response.data.avatar_url,
+                        gitResponse.color = color;
+
+                        
+                        resolve(gitResponse);
+                   
+            }); 
             } catch (err) {
                 console.log(err);
             }
@@ -54,7 +65,7 @@ async function gitRequest(gitResponse) {
 
 //Function to write the html from the github variables
 function writeToFile(fileName, html) {
-    
+    console.log("inside writeToFile")
     
 //writes the html file then passes to the init() funciton
     fs.writeFileSync( fileName , html ,function (err) { 
@@ -76,28 +87,25 @@ function writeToFile(fileName, html) {
 
 function init() {
     console.log('hi')
-    try {
+    // try {
 
-        let answers;
-        let html;
+        console.log("second hi")
         gitRequest()
-        .then(async (result) => {
-            answers = result;
-            console.log(answers)
-            html= generateHTML.generateHTML(gitResponse);
+        .then((result) => {
+            
+            html= generateHTML.generateHTML(result);
 
 
             writeToFile('index.html', html);
-        })
-        .catch(err => {
-            console.log(err);
+        },
+         reason => {
+            console.log(reason);
         });
 
         
-    } catch (err){
-        console.log(err);
+    // } catch (err){
+    //     console.log(err);
     }
-}
 init();
 
 // gitRequest()

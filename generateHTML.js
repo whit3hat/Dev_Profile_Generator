@@ -1,4 +1,5 @@
-const colors = {
+module.exports = {
+var color = {
   green: {
     wrapperBackground: "#E6E1C3",
     headerBackground: "#C1C72C",
@@ -24,7 +25,7 @@ const colors = {
     photoBorderColor: "white"
   }
 };
-module.exports = {
+
 generateHTML: function (data) {
   return `<!DOCTYPE html>
 <html lang="en">
