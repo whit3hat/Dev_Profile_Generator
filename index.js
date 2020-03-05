@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const fs = require('fs');
+const pdf = require('html-pdf');
 
 const generateHTML = require('./generateHTML');
 
@@ -32,15 +33,12 @@ async function gitRequest() {
              });
             //         //call to the github api with the username
            axios.get(
-               
-               
-                `https://api.github.com/users/${github}`
+               `https://api.github.com/users/${github}`
             )
             .then((response) => { //Variables created from gitHub call 
-                
-               
                         gitResponse.gitUrl = response.data.url,
                         gitResponse.name = response.data.name,
+                        gitResponse.bio = response.data.bio,
                         gitResponse.location = response.data.location,
                         gitResponse.stars = response.data.starred_url.length,
                         gitResponse.blog = response.data.blog,
@@ -48,11 +46,12 @@ async function gitRequest() {
                         gitResponse.followers = response.data.followers,
                         gitResponse.following = response.data.following,
                         gitResponse.image = response.data.avatar_url,
+                        gitResponse.company = response.data.company,
                         gitResponse.color = color;
 
                         
                         resolve(gitResponse);
-                        console.log(gitResponse.color);
+                        console.log(gitResponse);
             }); 
             } catch (err) {
                 console.log(err);
@@ -71,19 +70,19 @@ function writeToFile(fileName, html) {
     fs.writeFileSync( fileName , html ,function (err) { 
         if (err) throw err;
         console.log('wrote html file');
-    }
+    })
 
-    )
+// pdf convert from html
 
-    // pdf convert from html
-    
+// const options = {
+//     format: 'Letter',
+// };
+//     pdf.create(html, options).toFile(`./${gitResponse.name}.pdf`, (err) => {
+//         if (err) return console.log(err);
+//         console.log('PDF Created!');
+//     });
 };
 
-
-// function init() {
-//     console.log('hi')
-//     // try {
-//         const github = gitRequest();
 
 function init() {
     console.log('hi')
@@ -101,10 +100,6 @@ function init() {
          reason => {
             console.log(reason);
         });
-
-        
-    // } catch (err){
-    //     console.log(err);
     }
 init();
 
