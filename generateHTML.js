@@ -25,6 +25,7 @@ let color = {
     photoBorderColor: "white"
   }
 };
+
 module.exports = {
 generateHTML: function (data) {
   return `<!DOCTYPE html>
@@ -40,14 +41,14 @@ generateHTML: function (data) {
           <div class='wrapper'>
               <div class='photo-header'>
 
-                  <img src='${data.avatar_url}'>
+                  <img src='${data.image}'>
                   <h1>Hi</h1>
                   <h2>My name is ${data.name}!</h2>
                   <h6>Currently @ ${data.company}</h6>
                   <div class='links-nav'>
                       <a href='https://maps.google.com/?q=${data.location}' class='nav-link'><i class='fas fa-location-arrow'>${data.location}</i></a>
 
-                      <a href='${data.html_url}' class='nav-link'><i class='fab fa-github-alt'></i></a>
+                      <a href='${data.gitUrl}' class='nav-link'><i class='fab fa-github-alt'></i></a>
                       <a href='${data.blog}' clas='nav-link'>Portfolio</a>
                   </div>
               </div>
@@ -63,7 +64,7 @@ generateHTML: function (data) {
                       <div class='row'>
                           <div class='col card'>
                               <h3>Public Repos</h3>
-                              <h5>${data.public_repos}</h5>
+                              <h5>${data.repos}</h5>
                           </div>
                           <div class='col card'>
                               <h3>Followers</h3>
@@ -73,7 +74,7 @@ generateHTML: function (data) {
                       <div class='row'>
                           <div class='col card'>
                               <h3>Github Stars</h3>
-                              <h5>${data.public_gists}</h5>
+                              <h5>${data.stars}</h5>
                           </div>
                           <div class='col card'>
                               <h3>Following</h3>
