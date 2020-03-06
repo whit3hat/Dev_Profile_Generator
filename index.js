@@ -72,15 +72,15 @@ function writeToFile(fileName, html) {
         console.log('wrote html file');
     })
 
-// pdf convert from html
 
-// const options = {
-//     format: 'Letter',
-// };
-//     pdf.create(html, options).toFile(`./${gitResponse.name}.pdf`, (err) => {
-//         if (err) return console.log(err);
-//         console.log('PDF Created!');
-//     });
+// pdf convert from html
+const options = {
+    format: 'Letter',
+};
+    pdf.create(html, options).toFile(`./${gitResponse.name}.pdf`, (err) => {
+        if (err) return console.log(err);
+        console.log('PDF Created!');
+    });
 };
 
 
@@ -96,6 +96,8 @@ function init() {
 
 
             writeToFile('index.html', html);
+
+
         },
          reason => {
             console.log(reason);
