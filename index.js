@@ -9,15 +9,15 @@ const generateHTML = require('./generateHTML');
 
 //const writeToFile = util.promisify(fs.writeFile);
 
-
+let gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
+    repos: '', followers: '', following: '', image: '', color: ''};
 
 
 //Function to ask users questions for the PDF
 
 async function gitRequest() {
     //Variable object to hold the responses to call in the writeToFile function
-    let gitResponse = {gitUrl: '', name: '', location: '', stars: '', blog: '',
-    repos: '', followers: '', following: '', image: '', color: ''};
+    
 
     return new Promise(async (resolve, reject) => {
         try { //asking Github username
